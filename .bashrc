@@ -1,7 +1,7 @@
 # ~/.bashrc
 # vim:set ft=sh sw=2 sts=2:
 
-source "$HOME/.hashrc"
+source "$HOME/.washrc"
 
 # Store 10,000 history entries
 export HISTSIZE=10000
@@ -33,3 +33,4 @@ bind '"\C-w": backward-kill-word'
 [ -z "$PS1" ] || export PS1="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;36m\]\w\[\033[00m\]\$(git_prompt_info '(%s)')$ "
 
 [ ! -f "$HOME/.bashrc.local" ] || . "$HOME/.bashrc.local"
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"

@@ -1,8 +1,8 @@
-# ~/.hashrc
+# ~/.washrc
 # vim:set ft=sh sw=2 sts=2:
 
-[ -e "$HASHROCKET_DIR" ] || HASHROCKET_DIR="$HOME/hashrocket"
-export HASHROCKET_DIR
+[ -e "$WESTARETE_DIR" ] || WESTARETE_DIR="$HOME/westarete"
+export WESTARETE_DIR
 
 for dir in /opt/local/bin /usr/local/bin "$HOME/bin"; do
   case "$PATH:" in
@@ -17,34 +17,17 @@ for dir in /usr/local/sbin /opt/local/sbin; do
   esac
 done
 
-HASHROCKET_AUTHOR_ALOWE="Adam Lowe"
-HASHROCKET_AUTHOR_BIGTIGER="Jim Remsik"
-HASHROCKET_AUTHOR_CAMEROND="Cameron Daigle"
-HASHROCKET_AUTHOR_CALEBCORNMAN="Caleb Cornman"
-HASHROCKET_AUTHOR_DAVEOTT="Dave Ott"
-HASHROCKET_AUTHOR_DESI="Desi McAdam"
-HASHROCKET_AUTHOR_JGDAVEY="Joshua Davey"
-HASHROCKET_AUTHOR_JOHMAS="John Thomas Marino"
-HASHROCKET_AUTHOR_LEOSOTO="Leo Soto"
-HASHROCKET_AUTHOR_MARTINISOFT="Aaron Kalin"
-HASHROCKET_AUTHOR_MATTONRAILS="Matthew Conway"
-HASHROCKET_AUTHOR_NARWEN="Thais Camilo"
-HASHROCKET_AUTHOR_OBIE="Obie Fernandez"
-HASHROCKET_AUTHOR_PAULELLIOTT="Paul Elliott"
-HASHROCKET_AUTHOR_RBXBX="Robert Pitts"
-HASHROCKET_AUTHOR_SHANERILEY="Shane Riley"
-HASHROCKET_AUTHOR_SHAYARNETT="Shay Arnett"
-HASHROCKET_AUTHOR_SUPASPOIDA="Lar Van Der Jagt"
-HASHROCKET_AUTHOR_THERUBYMUG="Rogelio J. Samour"
-HASHROCKET_AUTHOR_TPOPE="Tim Pope"
-HASHROCKET_AUTHOR_VEEZUS="Veezus Kreist"
-HASHROCKET_AUTHOR_VOXDOLO="Stephen Caudill"
+WESTARETE_AUTHOR_JUSTIN="Justin Fedick"
+WESTARETE_AUTHOR_BRITT="Brittany Hostetler"
+WESTARETE_AUTHOR_CLINTON="Clinton Judy"
+WESTARETE_AUTHOR_ASH="Ash Skutches"
+WESTARETE_AUTHOR_SCOTT="Scott Woods"
 
-hcd() {
-  cd "$HASHROCKET_DIR/$1"
+wcd() {
+  cd "$WESTARETE_DIR/$1"
 }
 
-hpair() {
+wpair() {
   local name email args initials author ret
   name=""
   email="dev"
@@ -58,10 +41,10 @@ hpair() {
     author=
     case "x$arg" in
       x-h)
-      echo 'hpair rocketeer1 rocketeer2'
-      echo 'hpair rocketeer1 gueststar1="Real Name"'
-      echo 'hpair -u # go solo'
-      echo 'hpair    # status'
+      echo 'wpair rocketeer1 rocketeer2'
+      echo 'wpair rocketeer1 gueststar1="Real Name"'
+      echo 'wpair -u # go solo'
+      echo 'wpair    # status'
       return 1
       ;;
       x-e) ret=email;    continue ;;
@@ -78,7 +61,7 @@ hpair() {
       ;;
       [^-]*)
       initials="`echo "$arg"|tr a-z A-Z`"
-      eval "author=\"\$HASHROCKET_AUTHOR_$initials\""
+      eval "author=\"\$WESTARETE_AUTHOR_$initials\""
       ;;
     esac
     if [ -z "$author" ]; then
@@ -89,10 +72,10 @@ hpair() {
     email="$email+`echo "$initials"|tr A-Z a-z`"
   done
   name="`echo $name|sed -e 's/^ *and *//'`"
-  email="$email@hashrocket.com"
+  email="$email@westarete.com"
   case "$ret" in
     unsetenv) unset GIT_AUTHOR_NAME GIT_AUTHOR_EMAIL
-    rm -f "$HOME/.hpairrc"
+    rm -f "$HOME/.wpairrc"
     ;;
     email) echo "$email" ;;
     name)  echo "$name" ;;
@@ -112,18 +95,18 @@ hpair() {
     else
       export GIT_AUTHOR_NAME="$name" GIT_AUTHOR_EMAIL="$email"
       echo "$GIT_AUTHOR_NAME <$GIT_AUTHOR_EMAIL>"
-      rm -f "$HOME/.hpairrc"
-      echo "export GIT_AUTHOR_NAME=\"$GIT_AUTHOR_NAME\"" > "$HOME/.hpairrc"
-      echo "export GIT_AUTHOR_EMAIL=\"$GIT_AUTHOR_EMAIL\"" >> "$HOME/.hpairrc"
-      echo hpair >> "$HOME/.hpairrc"
+      rm -f "$HOME/.wpairrc"
+      echo "export GIT_AUTHOR_NAME=\"$GIT_AUTHOR_NAME\"" > "$HOME/.wpairrc"
+      echo "export GIT_AUTHOR_EMAIL=\"$GIT_AUTHOR_EMAIL\"" >> "$HOME/.wpairrc"
+      echo wpair >> "$HOME/.wpairrc"
     fi ;;
   esac
 }
-[ -n "$GIT_AUTHOR_EMAIL" -o ! -f "$HOME/.hpairrc" -o -z "$PS1" ] || . "$HOME/.hpairrc"
+[ -n "$GIT_AUTHOR_EMAIL" -o ! -f "$HOME/.wpairrc" -o -z "$PS1" ] || . "$HOME/.wpairrc"
 
 git() {
   [ -f "$HOME/.hitch_export_authors" ] && . "$HOME/.hitch_export_authors"
-  [ -f "$HOME/.hpairrc" ] && . "$HOME/.hpairrc" >/dev/null
+  [ -f "$HOME/.wpairrc" ] && . "$HOME/.wpairrc" >/dev/null
   if command -v hub >/dev/null; then
     command hub "$@"
   else
@@ -131,29 +114,29 @@ git() {
   fi
 }
 
-hclone() {
+wclone() {
   local url basename example new
   if [ x-f = "x$1" ]; then
     shift
-    rm -rf "$HASHROCKET_DIR/`basename $1 .git`"
+    rm -rf "$WESTARETE_DIR/`basename $1 .git`"
   fi
   basename="`basename $1 .git`"
-  if [ ! -d "$HASHROCKET_DIR/$basename" ]; then
+  if [ ! -d "$WESTARETE_DIR/$basename" ]; then
     new=1
     case "$1" in
       *:*) url="$1" ;;
       */*) url="git@github.com:$1.git" ;;
-      *)   url="git@github.com:hashrocket/$1.git" ;;
+      *)   url="git@github.com:westarete/$1.git" ;;
     esac
-    git clone "$url" "$HASHROCKET_DIR/$basename" || return 1
-    for example in "$HASHROCKET_DIR/$basename"/config/*.example.yml; do
+    git clone "$url" "$WESTARETE_DIR/$basename" || return 1
+    for example in "$WESTARETE_DIR/$basename"/config/*.example.yml; do
       cp "$example" "${example%.example.yml}.yml"
     done 2>/dev/null
-    if [ -f "$HASHROCKET_DIR/$basename/.rvmrc" ] && command -v __rvm_trust_rvmrc >/dev/null; then
-      __rvm_trust_rvmrc "$HASHROCKET_DIR/$basename/.rvmrc"
+    if [ -f "$WESTARETE_DIR/$basename/.rvmrc" ] && command -v __rvm_trust_rvmrc >/dev/null; then
+      __rvm_trust_rvmrc "$WESTARETE_DIR/$basename/.rvmrc"
     fi
   fi
-  hcd "$basename"
+  wcd "$basename"
   if [ ! -f .git/hooks/post-rewrite ]; then
     cat > .git/hooks/post-rewrite <<EOS
 #!/bin/sh
@@ -205,15 +188,15 @@ EOS
 
 # Tab completion
 if [ -n "$BASH_VERSION" ]; then
-  _hcd()
+  _wcd()
   {
     local cur projects
 
-    [ -r "$HASHROCKET_DIR" ] || return 0
+    [ -r "$WESTARETE_DIR" ] || return 0
 
     eval 'COMPREPLY=()'
     cur=${COMP_WORDS[COMP_CWORD]}
-    projects=$(\ls "$HASHROCKET_DIR")
+    projects=$(\ls "$WESTARETE_DIR")
 
     if [ $COMP_CWORD -eq 1 ]; then
       eval 'COMPREPLY=( $(compgen -o filenames -W "$projects" $cur) )'
@@ -221,10 +204,10 @@ if [ -n "$BASH_VERSION" ]; then
 
     return 0
   }
-  complete -F _hcd hcd hclone
+  complete -F _wcd wcd wclone
 elif [ -n "$ZSH_VERSION" ]; then
-  #compdef '_files -W "$HASHROCKET_DIR"' hcd hclone
-  compctl -/ -W "$HASHROCKET_DIR" hcd hclone
+  #compdef '_files -W "$WESTARETE_DIR"' wcd wclone
+  compctl -/ -W "$WESTARETE_DIR" wcd wclone
 fi
 
 rails_root() {

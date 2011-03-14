@@ -8,20 +8,21 @@ path=(
   /usr/sbin
   /sbin
   /usr/X11/bin
+  "$HOME/.rvm/bin"
 )
 
-# hashrocket dev env
-export HASHROCKET_DIR="$HOME/hashrocket"
+# westarete dev env
+export WESTARETE_DIR="$HOME/westarete"
 
-# import the hashrocket rc file, if present
-hrc="$HASHROCKET_DIR/dotmatrix/.hashrc"
-[[ -a $hrc ]] && source $hrc
+# import the westarete rc file, if present
+wrc="$WESTARETE_DIR/dotmatrix/.washrc"
+[[ -a $wrc ]] && source $wrc
 
 # color term
 export CLICOLOR=1
 export LSCOLORS=Dxfxcxdxbxegedabadacad
 export ZLS_COLORS=$LSCOLORS
-export TERM=xterm
+export TERM=xterm_256
 export LC_CTYPE=en_US.UTF-8
 export LESS=FRX
 
@@ -73,7 +74,7 @@ alias cp='nocorrect cp'
 alias mkdir='nocorrect mkdir'
 alias spec='nocorrect spec'
 alias rspec='nocorrect rspec'
-alias ll="ls -l"
+alias ll="ls -la"
 alias l.='ls -ld .[^.]*'
 alias lsd='ls -ld *(-/DN)'
 alias md='mkdir -p'
@@ -84,7 +85,7 @@ alias spec='spec -c'
 alias heroku='nocorrect heroku'
 
 # set cd autocompletion to commonly visited directories
-cdpath=(~ ~/src $DEV_DIR $HASHROCKET_DIR)
+cdpath=(~ ~/src $DEV_DIR $WESTARETE_DIR)
 
 # load from Rubygems
 export RUBYOPT='rubygems'
