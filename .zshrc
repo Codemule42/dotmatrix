@@ -15,14 +15,16 @@ path=(
 export WESTARETE_DIR="$HOME/westarete"
 
 # import the westarete rc file, if present
-wrc="$WESTARETE_DIR/dotmatrix/.washrc"
+wrc="$WESTARETE_DIR/dotmatrix/.westrc"
 [[ -a $wrc ]] && source $wrc
 
 # color term
-export CLICOLOR=1
+export CLICOLOR=1       # some shells need this for colorized output
+export GREP_COLOR=32    # colorized grep!
+export GREPCOLOR=32     # dito here
 export LSCOLORS=Dxfxcxdxbxegedabadacad
+export TERM=xterm-256color
 export ZLS_COLORS=$LSCOLORS
-export TERM=xterm_256
 export LC_CTYPE=en_US.UTF-8
 export LESS=FRX
 
@@ -47,12 +49,6 @@ bindkey '\en' down-line-or-search
 bindkey '\ew' kill-region
 bindkey '^r' history-incremental-search-backward
 
-# prompt
-PROMPT='%{$fg_bold[green]%}%n@%m%{$reset_color%}:%{$fg_bold[cyan]%}%~%{$reset_color%}$(git_prompt_info "(%s)")%# '
-
-# show non-success exit code in right prompt
-RPROMPT="%(?..{%{$fg[red]%}%?%{$reset_color%}})"
-
 # history
 HISTFILE=~/.zsh_history
 HISTSIZE=5000
@@ -74,6 +70,7 @@ alias cp='nocorrect cp'
 alias mkdir='nocorrect mkdir'
 alias spec='nocorrect spec'
 alias rspec='nocorrect rspec'
+alias hitch='nocorrect hitch'
 alias ll="ls -la"
 alias l.='ls -ld .[^.]*'
 alias lsd='ls -ld *(-/DN)'

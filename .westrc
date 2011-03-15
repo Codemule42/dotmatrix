@@ -17,6 +17,7 @@ for dir in /usr/local/sbin /opt/local/sbin; do
   esac
 done
 
+WESTARETE_AUTHOR_JEFF="Jeff Buechler"
 WESTARETE_AUTHOR_JUSTIN="Justin Fedick"
 WESTARETE_AUTHOR_BRITT="Brittany Hostetler"
 WESTARETE_AUTHOR_CLINTON="Clinton Judy"
@@ -30,7 +31,7 @@ wcd() {
 wpair() {
   local name email args initials author ret
   name=""
-  email="dev"
+  email="developers"
   if [ -n "$ZSH_VERSION" ]; then
     eval 'args=(${(i)@})'
   else
@@ -226,28 +227,6 @@ rails_root() {
   )
 }
 
-stc() {
-  (
-  local root
-  root="`rails_root`"
-  [ -n "$root" ] || root=.
-  if [ "$root/config/amazon_s3.yml" -nt "$root/tmp/s3cfg" ] || [ -f "$root/config/amazon_s3.yml" -a ! -f "$root/tmp/s3cfg" ]; then
-    ruby -ryaml -e '
-    c = YAML.load(File.read(ARGV.first))[ENV["RAILS_ENV"]||"development"]
-    File.open(ARGV.last,"w") do |f|
-    f.puts "access_key = #{c["access_key_id"]}"
-    f.puts "secret_key = #{c["secret_access_key"]}"
-    end if c.kind_of?(Hash)
-    ' "$root/config/amazon_s3.yml" "$root/tmp/s3cfg"
-  fi
-  if [ -f "$root/tmp/s3cfg" ]; then
-    exec s3cmd -c "$root/tmp/s3cfg" "$@"
-  else
-    exec s3cmd "$@"
-  fi
-  )
-}
-
 script_rails() {
   if [ -f "`rails_root`/script/rails" ]; then
     "`rails_root`/script/rails" "$@"
@@ -259,86 +238,7 @@ script_rails() {
   fi
 }
 
-twiki () {
-  rake db:migrate && rake db:migrate:redo && rake db:test:prepare
-}
-
-alias sc='script_rails console'
-alias ss='script_rails server -u'
-alias sdbc='script_rails dbconsole -p'
-
-alias testify="watchr ~/.watchr.rb"
-
-alias ll='ls -l'
 
 alias dirtycuke="git status --porcelain | grep '\.feature' | sed 's/.* //' | xargs cucumber"
 alias dirtyspec="git status --porcelain | grep '\_spec.rb' | sed 's/.* //' | xargs rspec"
 
-# git_prompt_info accepts 0 or 1 arguments (i.e., format string)
-# returns text to add to bash PS1 prompt (includes branch name)
-git_prompt_info () {
-  local g="$(git rev-parse --git-dir 2>/dev/null)"
-  if [ -n "$g" ]; then
-    local r
-    local b
-    local d
-    local s
-    # Rebasing
-    if [ -d "$g/rebase-apply" ] ; then
-      if test -f "$g/rebase-apply/rebasing" ; then
-        r="|REBASE"
-      fi
-      b="$(git symbolic-ref HEAD 2>/dev/null)"
-    # Interactive rebase
-    elif [ -f "$g/rebase-merge/interactive" ] ; then
-      r="|REBASE-i"
-      b="$(cat "$g/rebase-merge/head-name")"
-    # Merging
-    elif [ -f "$g/MERGE_HEAD" ] ; then
-      r="|MERGING"
-      b="$(git symbolic-ref HEAD 2>/dev/null)"
-    else
-      if [ -f "$g/BISECT_LOG" ] ; then
-        r="|BISECTING"
-      fi
-      if ! b="$(git symbolic-ref HEAD 2>/dev/null)" ; then
-        if ! b="$(git describe --exact-match HEAD 2>/dev/null)" ; then
-          b="$(cut -c1-7 "$g/HEAD")..."
-        fi
-      fi
-    fi
-
-    # Dirty Branch
-    local newfile='?? '
-    if [ -n "$ZSH_VERSION" ]; then
-      newfile='\?\? '
-    fi
-    d=''
-    s=$(git status --porcelain 2> /dev/null)
-    [[ $s =~ "$newfile" ]] && d+='+'
-    [[ $s =~ "M " ]] && d+='*'
-    [[ $s =~ "D " ]] && d+='-'
-
-    if [ -n "${1-}" ]; then
-      printf "$1" "${b##refs/heads/}$r$d"
-    else
-      printf "(%s) " "${b##refs/heads/}$r$d"
-    fi
-  fi
-}
-
-alias gap='git add -p'
-alias gb='git branch'
-alias gc='git commit -v'
-alias gca='git commit -a -v'
-alias gco="git checkout"
-alias gd='git diff'
-alias gdc='git diff --cached'
-alias gdh='git diff HEAD'
-alias gl='git pull'
-alias glod='git log --oneline --decorate'
-alias gp='git push'
-alias gpr='git pull --rebase'
-alias grep='grep --color=auto'
-alias gst='git status'
-alias vi='vim'
