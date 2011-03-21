@@ -18,6 +18,9 @@ path=(
 # westarete dev env
 export WESTARETE_DIR="$HOME/westarete"
 
+# load all config/library scripts
+for config_file ($WESTARETE_DIR/dotmatrix/lib/*.zsh) source $config_file
+
 # import the westarete rc file, if present
 wrc="$WESTARETE_DIR/dotmatrix/.westrc"
 [[ -a $wrc ]] && source $wrc
@@ -68,7 +71,7 @@ export PSQL_EDITOR='vim -c"set syntax=sql"'
 # just say no to zle vim mode:
 bindkey -e
 
-# aliases
+# common aliases
 alias mv='nocorrect mv'       # no spelling correction on mv
 alias cp='nocorrect cp'
 alias mkdir='nocorrect mkdir'
@@ -86,20 +89,13 @@ alias spec='spec -c'
 alias heroku='nocorrect heroku'
 
 # set cd autocompletion to commonly visited directories
-cdpath=(~ ~/src $DEV_DIR $WESTARETE_DIR)
+cdpath=(~ ~/src $DEV_DIR $WESTARETE_DIR ~/play)
 
 # load from Rubygems
 export RUBYOPT='rubygems'
 
 # rvm-install added line:
 if [[ -s "$HOME/.rvm/scripts/rvm" ]] ; then source "$HOME/.rvm/scripts/rvm" ; fi
-
-cuke() {
-  local file="$1"
-  shift
-  cucumber "features/$file" $@
-}
-compctl -g '*.feature' -W features cuke
 
 # import local zsh customizations, if present
 zrcl="$HOME/.zshrc.local"
