@@ -1,3 +1,4 @@
+#TODO: Once everyone's switched to Homebrew, remove all /opt/local paths for Macports.
 path=(
   "$HOME/bin"
   /usr/local/bin
@@ -9,6 +10,9 @@ path=(
   /sbin
   /usr/X11/bin
   "$HOME/.rvm/bin"
+  /opt/local/bin
+  /opt/local/lib/postgresql81/bin
+  /opt/local/lib/mysql5/bin
 )
 
 # westarete dev env
