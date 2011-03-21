@@ -15,9 +15,6 @@ path=(
   /opt/local/lib/mysql5/bin
 )
 
-# westarete dev env
-export WESTARETE_DIR="$HOME/westarete"
-
 # load all config/library scripts
 for config_file ($WESTARETE_DIR/dotmatrix/lib/*.zsh) source $config_file
 
