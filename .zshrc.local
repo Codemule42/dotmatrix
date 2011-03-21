@@ -19,10 +19,6 @@ wiki() { dig +short txt $1.wp.dg.cx; }
 # Load the theme
 source "$WESTARETE_DIR/dotmatrix/themes/judy_256.zsh"
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(brew bundler cap git github osx rails rails3 textmate)
-
 # Custom paths go here, only if they're relevant to my computer alone.
 # If a path is helpful for everyone, add it to the dotmatrix!
 export PATH=$PATH
