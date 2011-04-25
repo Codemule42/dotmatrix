@@ -10,6 +10,7 @@ path=(
   /sbin
   /usr/X11/bin
   "$HOME/.rvm/bin"
+  "$HOME/bin"
   /opt/local/bin
   /opt/local/lib/postgresql81/bin
   /opt/local/lib/mysql5/bin
