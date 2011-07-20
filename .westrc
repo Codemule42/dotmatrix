@@ -17,11 +17,11 @@ for dir in /usr/local/sbin /opt/local/sbin; do
   esac
 done
 
-WESTARETE_AUTHOR_JEFF="Jeff Buechler"
-WESTARETE_AUTHOR_JUSTIN="Justin Fedick"
+WESTARETE_AUTHOR_ASH="Ash Skutches"
 WESTARETE_AUTHOR_BRITT="Brittany Hostetler"
 WESTARETE_AUTHOR_CLINTON="Clinton Judy"
-WESTARETE_AUTHOR_ASH="Ash Skutches"
+WESTARETE_AUTHOR_ERIC="Eric Durante"
+WESTARETE_AUTHOR_JEFF="Jeff Buechler"
 WESTARETE_AUTHOR_SCOTT="Scott Woods"
 
 wcd() {
