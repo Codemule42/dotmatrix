@@ -22,10 +22,10 @@ wrc="$WESTARETE_DIR/dotmatrix/.westrc"
 # color term
 export CLICOLOR=1       # some shells need this for colorized output
 export GREP_COLOR=32    # colorized grep!
-export GREPCOLOR=32     # dito here
+export GREPCOLOR=32     # also colorizes grep, depending on version
 export LSCOLORS=Dxfxcxdxbxegedabadacad
-export TERM=xterm-256color
 export ZLS_COLORS=$LSCOLORS
+export TERM=xterm-256color
 export LC_CTYPE=en_US.UTF-8
 export LESS=FRX
 
@@ -36,7 +36,7 @@ autoload -U compinit; compinit
 autoload colors; colors
 
 # options
-setopt appendhistory autocd extendedglob histignoredups correctall nonomatch prompt_subst
+setopt appendhistory autocd extendedglob histignoredups nonomatch prompt_subst
 
 # Bindings
 # external editor support
