@@ -1,9 +1,7 @@
-#TODO: Once everyone's switched to Homebrew, remove all /opt/local paths for Macports.
 path=(
   "$HOME/bin"
   /usr/local/bin
   /usr/local/sbin
-  /opt/local/bin
   /usr/bin
   /bin
   /usr/sbin
@@ -13,10 +11,10 @@ path=(
 )
 
 # load all config/library scripts
-for config_file ($WESTARETE_DIR/dotmatrix/lib/*.zsh) source $config_file
+for config_file ($PLAY_DIR/dotmatrix/lib/*.zsh) source $config_file
 
-# import the westarete rc file, if present
-wrc="$WESTARETE_DIR/dotmatrix/.westrc"
+# import the company rc file, if present
+wrc="$PLAY_DIR/dotmatrix/.workrc"
 [[ -a $wrc ]] && source $wrc
 
 # color term

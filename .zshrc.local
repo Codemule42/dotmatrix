@@ -6,18 +6,13 @@ alias shortprompt="export PS1='$ '"   # For screencasting.
 # Git functions
 alias gd='git diff --word-diff | mate'
 alias gba='git branch -a'
-alias gx='gittower'
-alias gt='gittower'
 alias grm='git ls-files --deleted | xargs git rm'
-
-# Home server commands
-alias ssh-home-server='ssh -p 22222 -l clinton -i ~/.ssh/id_rsa internal.j-udy.com'
 
 # Fun stuff
 wiki() { dig +short txt $1.wp.dg.cx; }
 
 # Load the theme
-source "$WESTARETE_DIR/dotmatrix/themes/judy_256.zsh"
+source "$PLAY_DIR/dotmatrix/themes/judy_256.zsh"
 
 # Custom paths go here, only if they're relevant to my computer alone.
 # If a path is helpful for everyone, add it to the dotmatrix!
