@@ -8,6 +8,13 @@ filetype plugin indent on
 
 set visualbell
 
+set wildmenu
+set wildmode=list:longest
+
+set guifont=Menlo:h16
+set guioptions-=T guioptions-=e guioptions-=L guioptions-=r
+set shell=bash
+
 augroup vimrc
   autocmd!
   autocmd GuiEnter * set guioptions-=T columns=120 lines=70 number

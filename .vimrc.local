@@ -1,2 +1,14 @@
+let g:molokai_original = 0
 colorscheme molokai
-set gfn=Menlo:h16
+
+if has("gui_running")
+   " set default size: 90x35
+   set columns=90
+   set lines=35
+   " No menus and no toolbar
+   set guioptions-=m
+   set guioptions-=T
+endif
+
+set tabstop=2 " tab size = 2
+set shiftwidth=2 " soft space = 2
