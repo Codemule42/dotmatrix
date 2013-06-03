@@ -57,9 +57,9 @@ setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY
 
 # default apps
-(( ${+PAGER}   )) || export PAGER='less'
-(( ${+EDITOR}  )) || export EDITOR='vim'
-export PSQL_EDITOR='vim -c"set syntax=sql"'
+(( ${+PAGER}       )) || export PAGER='less'
+(( ${+EDITOR}      )) || export EDITOR='subl -w'
+(( ${+PSQL_EDITOR} )) || export PSQL_EDITOR='subl -w'
 
 # just say no to zle vim mode:
 bindkey -e
@@ -83,11 +83,13 @@ alias heroku='nocorrect heroku'
 
 alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
 alias shortprompt="export PS1='$ '"   # For screencasting.
+alias slt="subl"
 
 # Git functions
 alias gd='git diff --word-diff | slt'
 alias gba='git branch -a'
 alias grm='git ls-files --deleted | xargs git rm'
+alias gx='gitx --all'
 
 # set cd autocompletion to commonly visited directories
 cdpath=(~ ~/src $DEV_DIR ~/play)
@@ -98,8 +100,14 @@ export RUBYOPT='rubygems'
 # fix mysql2 gem
 export DYLD_LIBRARY_PATH="/usr/local/Cellar/mysql/5.5.15/lib/"
 
+# Load the theme
+source "$PLAY_DIR/dotmatrix/themes/judy_256.zsh"
+
 # import local zsh customizations, if present
 zrcl="$HOME/.zshrc.local"
 [[ -a $zrcl ]] && source $zrcl
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+# Fun stuff
+wiki() { dig +short txt $1.wp.dg.cx; }
