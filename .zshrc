@@ -1,5 +1,6 @@
 path=(
-  "$HOME/bin"
+  .git/safe/../../bin
+  $HOME/bin
   /usr/local/bin
   /usr/local/sbin
   /usr/bin
@@ -7,7 +8,7 @@ path=(
   /usr/sbin
   /sbin
   /usr/X11/bin
-  "$HOME/.rvm/bin"
+  $HOME/.rvm/bin
 )
 
 # load all config/library scripts
@@ -70,7 +71,7 @@ alias mkdir='nocorrect mkdir'
 alias spec='nocorrect spec'
 alias rspec='nocorrect rspec'
 alias hitch='nocorrect hitch'
-alias ll="ls -la"
+alias ll='ls -laF'
 alias l.='ls -ld .[^.]*'
 alias lsd='ls -ld *(-/DN)'
 alias md='mkdir -p'
@@ -80,15 +81,25 @@ alias ..='cd ..'
 alias spec='spec -c'
 alias heroku='nocorrect heroku'
 
+alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
+alias shortprompt="export PS1='$ '"   # For screencasting.
+
+# Git functions
+alias gd='git diff --word-diff | slt'
+alias gba='git branch -a'
+alias grm='git ls-files --deleted | xargs git rm'
+
 # set cd autocompletion to commonly visited directories
-cdpath=(~ ~/src $DEV_DIR $WESTARETE_DIR ~/play)
+cdpath=(~ ~/src $DEV_DIR ~/play)
 
 # load from Rubygems
 export RUBYOPT='rubygems'
 
-# rvm-install added line:
-if [[ -s "$HOME/.rvm/scripts/rvm" ]] ; then source "$HOME/.rvm/scripts/rvm" ; fi
+# fix mysql2 gem
+export DYLD_LIBRARY_PATH="/usr/local/Cellar/mysql/5.5.15/lib/"
 
 # import local zsh customizations, if present
 zrcl="$HOME/.zshrc.local"
 [[ -a $zrcl ]] && source $zrcl
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

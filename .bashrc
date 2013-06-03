@@ -1,7 +1,7 @@
 # ~/.bashrc
 # vim:set ft=sh sw=2 sts=2:
 
-source "$HOME/.westrc"
+source "$HOME/.workrc"
 
 # Store 10,000 history entries
 export HISTSIZE=10000
@@ -34,3 +34,7 @@ bind '"\C-w": backward-kill-word'
 
 [ ! -f "$HOME/.bashrc.local" ] || . "$HOME/.bashrc.local"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+PATH=.git/safe/../../bin:$PATH
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
