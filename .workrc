@@ -1,4 +1,3 @@
-# ~/.washrc
 # vim:set ft=sh sw=2 sts=2:
 
 [ -e "$WORK" ] || WORK_DIR="$HOME/work"

@@ -13,7 +13,7 @@
 	ui = auto
 [core]
 	excludesfile = ~/.cvsignore
-	editor = vim
+	editor = slt
 	whitespace = warn
 [github]
 	user = hashrocketeer
@@ -42,5 +42,5 @@
 [rebase]
 	autosquash = true
 [user]
-	email = dev@hashrocket.com
-	name = "Hashrocket Workstation"
+	email = clinton@j-udy.com
+	name = "Clinton Judy"

@@ -4,5 +4,5 @@ command="$1"
 shift
 
 case "$command" in
-  *) "$WESTARETE_DIR/westarete/bin/westarete" "$command" "$@" ;;
+  *) "$command" "$@" ;;
 esac
