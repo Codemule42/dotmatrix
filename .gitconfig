@@ -13,7 +13,7 @@
 	ui = auto
 [core]
 	excludesfile = ~/.cvsignore
-	editor = slt
+	editor = vim
 	whitespace = warn
 [github]
 	user = hashrocketeer

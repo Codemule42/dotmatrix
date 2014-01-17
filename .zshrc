@@ -9,6 +9,7 @@ path=(
   /sbin
   /usr/X11/bin
   $HOME/.rvm/bin
+  ./bin:...
 )
 
 # load all config/library scripts
@@ -58,8 +59,8 @@ setopt INC_APPEND_HISTORY
 
 # default apps
 (( ${+PAGER}       )) || export PAGER='less'
-(( ${+EDITOR}      )) || export EDITOR='subl -w'
-(( ${+PSQL_EDITOR} )) || export PSQL_EDITOR='subl -w'
+(( ${+EDITOR}      )) || export EDITOR='vim'
+(( ${+PSQL_EDITOR} )) || export PSQL_EDITOR='vim'
 
 # just say no to zle vim mode:
 bindkey -e
@@ -97,8 +98,8 @@ cdpath=(~ ~/src $DEV_DIR ~/play)
 # load from Rubygems
 export RUBYOPT='rubygems'
 
-# fix mysql2 gem
-export DYLD_LIBRARY_PATH="/usr/local/Cellar/mysql/5.5.15/lib/"
+# # fix mysql2 gem
+# export DYLD_LIBRARY_PATH="/usr/local/Cellar/mysql/5.5.15/lib/"
 
 # Load the theme
 source "$PLAY_DIR/dotmatrix/themes/judy_256.zsh"
